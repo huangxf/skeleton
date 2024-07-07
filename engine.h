@@ -2,6 +2,7 @@
 #define _ENGINE_
 
 #include "window.h"
+#include "log.hpp"
 
 class Engine
 {

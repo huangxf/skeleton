@@ -2,6 +2,7 @@
 #include "iostream"
 #include "GL/glew.h"
 #include "glfw\glfw3.h"
+#include "log.hpp"
 
 class GLFW_Window: public Window
 {
@@ -11,8 +12,9 @@ public:
     void Destroy() override;
     void Close() override;
     bool IsClosed() override;
-    void SwapBuffer() override;
-    void PollEvent() override;
+    void BeforeRender() override;
+    void Render() override;
+    void AfterRender() override;
 
     GLFW_Window(WindowPara& windowPara) :winPara(windowPara),m_window(nullptr)
     {
@@ -36,6 +38,9 @@ public:
     GLFW_Window():winPara({"Noname",0,0}), m_window(nullptr) {}
 
 private:
+    void KeyboardInput();
+    void Mouse_callback();
+
     WindowPara winPara;
     GLFWwindow * m_window;
 };

@@ -8,7 +8,7 @@ bool Engine::Init()
 {
     if (!m_window)
     {
-        printf("Error: window instance is null.\n");
+        LOG("Error: window instance is null.\n");
         return false;
     }
     m_window->Init();
@@ -19,16 +19,16 @@ bool Engine::Run()
 {
     while (!m_window->IsClosed())
     {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        m_window->SwapBuffer();
-        m_window->PollEvent();
+        m_window->BeforeRender();
+        m_window->Render();
+        m_window->AfterRender();
     }
     return true;
 }
 
 bool Engine::Shutdown()
 {
+    m_window->Destroy();
     return true;
 }
 
